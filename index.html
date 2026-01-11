@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valternan | WS Gamer</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* CSS FINALIZADO */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #050505;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Fundo com efeito de profundidade */
+        .background-animado {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1a2a22 0%, #050505 100%);
+            z-index: -1;
+        }
+
+        /* O Cartão Gamer */
+        .cartao {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            width: 350px;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 25px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s ease, border-color 0.3s;
+        }
+
+        .cartao:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 255, 136, 0.6);
+        }
+
+        /* Foto de Perfil com Brilho */
+        .foto-perfil {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #00ff88;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            margin-bottom: 15px;
+            object-fit: cover;
+            transition: transform 0.8s ease-in-out;
+        }
+
+        .cartao:hover .foto-perfil {
+            transform: rotate(360deg);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 3px;
+            color: #00ff88;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+            margin-bottom: 5px;
+        }
+
+        .subtitulo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            color: #aaa;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        /* Botões */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .botao {
+            text-decoration: none;
+            color: white;
+            padding: 14px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        /* Efeitos Hover Individuais */
+        .botao:hover {
+            transform: scale(1.03);
+            color: #000;
+        }
+
+        .email:hover { background: #fff; border-color: #fff; box-shadow: 0 0 20px #fff; }
+        
+        .instagram:hover { 
+            background: #ff00ff; 
+            border-color: #ff00ff; 
+            box-shadow: 0 0 20px #ff00ff; 
+            color: #fff;
+        }
+
+        .pix:hover { 
+            background: #ffdb00; 
+            border-color: #ffdb00; 
+            box-shadow: 0 0 20px #ffdb00; 
+        }
+
+        /* Estilo para quando o Pix é copiado */
+        .copiado {
+            background: #28a745 !important;
+            border-color: #28a745 !important;
+            color: white !important;
+            box-shadow: 0 0 20px #28a745 !important;
+        }
+
+        @media (max-width: 400px) {
+            .cartao { width: 90%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-animado"></div>
+
+    <div class="cartao">
+        <img src="IMG-20260110-WA0110.jpg" alt="Valternan" class="foto-perfil">
+        
+        <h1>VALTERNAN</h1>
+        <p class="subtitulo"><i class="fas fa-gamepad"></i> WS GAMER</p>
+
+        <div class="links">
+            <a href="mailto:valternan31@gmail.com" class="botao email">
+                <i class="fas fa-envelope"></i> <span>E-MAIL</span>
+            </a>
+            
+            <a href="https://www.instagram.com/valternan26?igsh=eW1nZndrcnhrdmZr" target="_blank" class="botao instagram">
+                <i class="fab fa-instagram"></i> <span>INSTAGRAM</span>
+            </a>
+
+            <a href="#" class="botao pix" onclick="copiarPix(event)">
+                <i class="fas fa-copy"></i> <span id="texto-pix">COPIAR PIX</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function copiarPix(event) {
+            event.preventDefault();
+            
+            // TUA CHAVE PIX AQUI
+            const chavePix = "valternan31@gmail.com"; 
+            
+            const tempInput = document.createElement("input");
+            tempInput.value = chavePix;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            // Feedback Visual
+            const botao = event.currentTarget;
+            const span = botao.querySelector("span");
+            const icone = botao.querySelector("i");
+            const textoOriginal = span.innerText;
+            const iconeOriginal = icone.className;
+
+            span.innerText = "COPIADO!";
+            icone.className = "fas fa-check";
+            botao.classList.add("copiado");
+
+            setTimeout(() => {
+                span.innerText = textoOriginal;
+                icone.className = iconeOriginal;
+                botao.classList.remove("copiado");
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
